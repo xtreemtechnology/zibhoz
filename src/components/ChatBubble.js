@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 import colors from "../theme/colors";
 
 export default function ChatBubble({ role, text }) {
@@ -20,7 +21,7 @@ export default function ChatBubble({ role, text }) {
 
       {isUser && (
         <View style={styles.userAvatar}>
-          <Text style={styles.userAvatarIcon}>👤</Text>
+          <Ionicons name="person" size={16} color={colors.textMuted} />
         </View>
       )}
     </View>
@@ -65,9 +66,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     flexShrink: 0,
-  },
-  userAvatarIcon: {
-    fontSize: 14,
   },
   bubble: {
     padding: 14,

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
-import { Pressable, Text, View, StyleSheet, Animated } from "react-native";
+import { Pressable, View, StyleSheet, Animated } from "react-native";
+import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import colors from "../theme/colors";
 
 // voiceState: "idle" | "listening" | "processing" | "speaking"
@@ -101,13 +102,13 @@ export default function MicButton({ onPress, voiceState = "idle" }) {
             isProcessing && styles.processingOrb,
           ]}
         >
-          <Text
-            style={[styles.icon, { color: iconColor }]}
+          <Ionicons
+            name={isProcessing ? "sync" : isSpeaking ? "volume-high" : "mic"}
+            size={32}
+            color={iconColor}
             accessibilityElementsHidden
             importantForAccessibility="no"
-          >
-            {isProcessing ? "⟳" : isSpeaking ? "◉" : "🎙"}
-          </Text>
+          />
         </Animated.View>
       </Pressable>
 
