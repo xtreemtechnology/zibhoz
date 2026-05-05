@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Zibhoz — Voice-first prediction markets. Join the waitlist for early access." />
+  <title>Zibhoz · Join the Waitlist</title>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #121212;
+      --bg-alt:       #181818;
+      --surface:      #1E1E1E;
+      --surface-alt:  #242424;
+      --primary:      #FFEB3B;
+      --primary-dim:  rgba(255,235,59,0.15);
+      --primary-glow: rgba(255,235,59,0.30);
+      --primary-bdr:  rgba(255,235,59,0.45);
+      --text:         #FFFFFF;
+      --text-sec:     #CCCCCC;
+      --text-muted:   #888888;
+      --text-on-yel:  #121212;
+      --border:       rgba(255,255,255,0.10);
+      --border-s:     rgba(255,255,255,0.22);
+      --positive:     #00E676;
+      --negative:     #FF3B30;
+    }
+
+    html, body {
+      min-height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100svh;
+      padding: 32px 20px;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Glow accents */
+    body::before, body::after {
+      content: '';
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    body::before {
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 480px;
+      height: 480px;
+      background: rgba(255,235,59,0.07);
+    }
+    body::after {
+      bottom: -80px;
+      left: -100px;
+      width: 360px;
+      height: 360px;
+      background: rgba(255,255,255,0.02);
+    }
+
+    .card {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 440px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+    }
+
+    /* ── Orb ── */
+    .orb-wrap {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .orb-ring3, .orb-ring2 {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid;
+    }
+    .orb-ring3 {
+      inset: 0;
+      border-color: rgba(255,235,59,0.10);
+    }
+    .orb-ring2 {
+      inset: 15px;
+      border-color: var(--primary-bdr);
+      background: rgba(255,235,59,0.06);
+    }
+    .orb-outer {
+      width: 82px;
+      height: 82px;
+      border-radius: 50%;
+      border: 2px solid var(--primary-bdr);
+      background: var(--primary-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .orb-inner {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      box-shadow: 0 0 28px var(--primary-glow);
+    }
+
+    /* ── Brand ── */
+    .brand {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .kicker {
+      color: var(--primary);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+    }
+    .logo {
+      font-size: 52px;
+      font-weight: 900;
+      letter-spacing: 6px;
+      color: var(--text);
+      line-height: 1;
+    }
+    .tagline {
+      font-size: 16px;
+      color: var(--text-sec);
+      font-weight: 600;
+      line-height: 26px;
+    }
+
+    /* ── Form ── */
+    .form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .input-group label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      color: var(--text-sec);
+    }
+    .input-group input {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px 16px;
+      color: var(--text);
+      font-size: 15px;
+      font-weight: 500;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+      font-family: inherit;
+    }
+    .input-group input::placeholder { color: var(--text-muted); }
+    .input-group input:focus {
+      border-color: var(--primary-bdr);
+      box-shadow: 0 0 0 3px var(--primary-dim);
+    }
+
+    .error-text {
+      color: var(--negative);
+      font-size: 12px;
+      font-weight: 600;
+      text-align: center;
+      min-height: 18px;
+    }
+
+    .btn {
+      background: var(--primary);
+      color: var(--text-on-yel);
+      font-size: 17px;
+      font-weight: 900;
+      letter-spacing: 0.6px;
+      border: none;
+      border-radius: 999px;
+      padding: 17px 52px;
+      width: 100%;
+      cursor: pointer;
+      box-shadow: 0 6px 24px rgba(255,235,59,0.35);
+      transition: opacity 0.15s, transform 0.1s;
+      font-family: inherit;
+      margin-top: 4px;
+    }
+    .btn:hover { opacity: 0.92; }
+    .btn:active { transform: scale(0.98); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+    /* ── Trust row ── */
+    .trust-row {
+      display: flex;
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .trust-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 12px 8px;
+      gap: 4px;
+      border-right: 1px solid var(--border);
+    }
+    .trust-item:last-child { border-right: none; }
+    .trust-icon { font-size: 16px; }
+    .trust-label {
+      color: var(--text-muted);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+
+    /* ── Success state ── */
+    .success { display: none; flex-direction: column; align-items: center; gap: 24px; width: 100%; }
+    .success.visible { display: flex; }
+    .main-form { display: flex; flex-direction: column; align-items: center; gap: 28px; width: 100%; }
+    .main-form.hidden { display: none; }
+
+    .success-block {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .success-title {
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--text);
+      letter-spacing: 0.3px;
+    }
+    .success-sub {
+      font-size: 15px;
+      color: var(--text-sec);
+      font-weight: 500;
+      line-height: 24px;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+    .success-sub .em { color: var(--primary); font-weight: 700; }
+
+    .success-note {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 13px;
+      line-height: 22px;
+      font-weight: 500;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      position: relative;
+      z-index: 1;
+      margin-top: 32px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 500;
+    }
+
+    @media (max-width: 480px) {
+      .logo { font-size: 40px; }
+      .success-title { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+
+    <!-- ── Orb ── -->
+    <div class="orb-wrap" id="orb">
+      <div class="orb-ring3"></div>
+      <div class="orb-ring2"></div>
+      <div class="orb-outer">
+        <div class="orb-inner" id="orb-icon">🎙</div>
+      </div>
+    </div>
+
+    <!-- ── Main form state ── -->
+    <div class="main-form" id="main-form">
+
+      <div class="brand">
+        <p class="kicker">Coming Soon</p>
+        <h1 class="logo">ZIBHOZ</h1>
+        <p class="tagline">Be first in line.<br>Voice-first prediction markets.</p>
+      </div>
+
+      <form class="form" id="waitlist-form" novalidate>
+        <div class="input-group">
+          <label for="name">Your Name</label>
+          <input
+            id="name"
+            type="text"
+            placeholder="e.g. Alex Johnson"
+            autocomplete="name"
+            required
+          />
+        </div>
+
+        <div class="input-group">
+          <label for="email">Email Address</label>
+          <input
+            id="email"
+            type="email"
+            placeholder="you@example.com"
+            autocomplete="email"
+            required
+          />
+        </div>
+
+        <p class="error-text" id="error-msg" role="alert" aria-live="polite"></p>
+
+        <button class="btn" type="submit" id="submit-btn">Join the Waitlist &nbsp;→</button>
+      </form>
+
+      <div class="trust-row">
+        <div class="trust-item"><span class="trust-icon">🔒</span><span class="trust-label">No spam</span></div>
+        <div class="trust-item"><span class="trust-icon">🛡</span><span class="trust-label">Private</span></div>
+        <div class="trust-item"><span class="trust-icon">🚀</span><span class="trust-label">Early access</span></div>
+      </div>
+
+    </div>
+
+    <!-- ── Success state ── -->
+    <div class="success" id="success-state">
+      <div class="success-block">
+        <p class="kicker">You're in</p>
+        <h2 class="success-title">You're on the list!</h2>
+        <p class="success-sub">
+          We'll notify you at <span class="em" id="confirmed-email"></span> when Zibhoz launches. Stay tuned.
+        </p>
+      </div>
+
+      <div class="success-note">
+        🎙 Voice-first prediction markets are coming.<br>Be ready to trade with your voice.
+      </div>
+    </div>
+
+  </div>
+
+  <p class="footer">No account required &middot; Wallet-powered &middot; &copy; 2025 Zibhoz</p>
+
+  <script>
+    const form      = document.getElementById('waitlist-form');
+    const nameInput = document.getElementById('name');
+    const emailInput= document.getElementById('email');
+    const errorMsg  = document.getElementById('error-msg');
+    const submitBtn = document.getElementById('submit-btn');
+    const mainForm  = document.getElementById('main-form');
+    const successEl = document.getElementById('success-state');
+    const confEmail = document.getElementById('confirmed-email');
+    const orbIcon   = document.getElementById('orb-icon');
+
+    // RFC 5322-inspired email regex
+    const EMAIL_RE = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/;
+
+    function showError(msg) {
+      errorMsg.textContent = msg;
+    }
+    function clearError() {
+      errorMsg.textContent = '';
+    }
+
+    nameInput.addEventListener('input', clearError);
+    emailInput.addEventListener('input', clearError);
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const name  = nameInput.value.trim();
+      const email = emailInput.value.trim();
+
+      if (!name) {
+        showError('Please enter your name.');
+        nameInput.focus();
+        return;
+      }
+      if (!email || !EMAIL_RE.test(email)) {
+        showError('Please enter a valid email address.');
+        emailInput.focus();
+        return;
+      }
+
+      clearError();
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Joining…';
+
+      // Simulate async submission (replace with real API call as needed)
+      setTimeout(function () {
+        confEmail.textContent = email;
+        mainForm.classList.add('hidden');
+        successEl.classList.add('visible');
+        orbIcon.textContent = '✅';
+      }, 800);
+    });
+  </script>
+
+</body>
+</html>
