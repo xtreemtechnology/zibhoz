@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}}</title>
+</head>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); min-height: 100vh; padding: 20px; margin: 0;">
+  <div style="background: white; border-radius: 24px; padding: 48px; max-width: 600px; margin: 0 auto; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
+    <div style="font-size: 32px; font-weight: 800; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align: center; margin-bottom: 32px;">Zibhoz</div>
+    <h1 style="color: #1a202c; font-size: 28px; margin-bottom: 16px; text-align: center;">{{title}}</h1>
+    <p style="color: #4a5568; font-size: 16px; line-height: 1.6; margin-bottom: 24px;">{{message}}</p>
+    {{#if actionUrl}}
+    <div style="text-align: center; margin: 32px 0;">
+      <a href="{{actionUrl}}" style="display: inline-block; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; padding: 16px 48px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 16px; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);">View Details</a>
+    </div>
+    {{/if}}
+    <div style="text-align: center; color: #718096; font-size: 14px; margin-top: 32px; padding-top: 24px; border-top: 1px solid #e2e8f0;">
+      <p>Need help? Contact our support team at <a href="mailto:support@zibhoz.com" style="color: #3b82f6;">support@zibhoz.com</a></p>
+      <p><strong>The Zibhoz Team</strong></p>
+    </div>
+  </div>
+</body>
+</html>

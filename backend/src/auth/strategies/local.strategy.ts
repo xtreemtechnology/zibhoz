@@ -21,7 +21,13 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
       throw new UnauthorizedException('Invalid credentials');
     }
 
-    const { password: _, refreshToken: __, verificationToken: ___, verificationExpiry: ____, ...safeUser } = user;
+    const {
+      password: _,
+      refreshToken: __,
+      verificationToken: ___,
+      verificationExpiry: ____,
+      ...safeUser
+    } = user;
     return safeUser;
   }
 }

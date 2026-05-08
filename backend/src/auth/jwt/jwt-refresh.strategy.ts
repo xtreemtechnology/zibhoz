@@ -19,7 +19,10 @@ interface SafeUser {
 }
 
 @Injectable()
-export class JwtRefreshStrategy extends PassportStrategy(Strategy, 'jwt-refresh') {
+export class JwtRefreshStrategy extends PassportStrategy(
+  Strategy,
+  'jwt-refresh',
+) {
   constructor(
     private configService: ConfigService,
     private usersService: UsersService,
@@ -61,6 +64,11 @@ export class JwtRefreshStrategy extends PassportStrategy(Strategy, 'jwt-refresh'
       throw new UnauthorizedException('Invalid refresh token');
     }
 
-    return { id: user.id, email: user.email, createdAt: user.createdAt, updatedAt: user.updatedAt };
+    return {
+      id: user.id,
+      email: user.email,
+      createdAt: user.createdAt,
+      updatedAt: user.updatedAt,
+    };
   }
 }

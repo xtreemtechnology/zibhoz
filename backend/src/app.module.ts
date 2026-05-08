@@ -2,18 +2,20 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { VoiceModule } from './voice/voice.module';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
-import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
+import { ThrottlerModule } from '@nestjs/throttler';
 import { APP_GUARD, APP_INTERCEPTOR, APP_FILTER } from '@nestjs/core';
 
 import { PrismaModule } from '../prisma/Prisma.module';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 import { RolesGuard } from './auth/guards/roles.guard';
+import { ThrottlerGuard } from './auth/guards/throttler.guard';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { TransformInterceptor } from './common/interceptors/transform.interceptor';
 import { jwtValidationSchema } from './config/jwt.config';
+import { EmailModule } from './email/email.module';
 
 @Module({
   imports: [
@@ -46,6 +48,7 @@ import { jwtValidationSchema } from './config/jwt.config';
     PrismaModule,
     AuthModule,
     UsersModule,
+    EmailModule,
   ],
 
   controllers: [AppController],
@@ -53,15 +56,15 @@ import { jwtValidationSchema } from './config/jwt.config';
     AppService,
     {
       provide: APP_GUARD,
-      useClass: ThrottlerGuard,
-    },
-    {
-      provide: APP_GUARD,
       useClass: JwtAuthGuard,
     },
     {
       provide: APP_GUARD,
       useClass: RolesGuard,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: ThrottlerGuard,
     },
     {
       provide: APP_FILTER,

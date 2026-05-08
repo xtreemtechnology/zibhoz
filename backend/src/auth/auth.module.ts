@@ -18,6 +18,7 @@ import { LocalAuthGuard } from './guards/local-auth.guard';
 
 import { HttpExceptionFilter } from '../common/filters/http-exception.filter';
 import { TransformInterceptor } from '../common/interceptors/transform.interceptor';
+import { EmailModule } from '../email/email.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { TransformInterceptor } from '../common/interceptors/transform.intercept
     forwardRef(() => UsersModule),
     PassportModule.register({ defaultStrategy: 'jwt' }),
     ConfigModule,
+    EmailModule,
 
     JwtModule.registerAsync({
       imports: [ConfigModule],

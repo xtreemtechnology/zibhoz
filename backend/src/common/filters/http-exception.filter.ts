@@ -31,7 +31,10 @@ export class HttpExceptionFilter implements ExceptionFilter {
 
       if (this.isProd && status === HttpStatus.INTERNAL_SERVER_ERROR) {
         message = 'Internal server error';
-      } else if (typeof exceptionResponse === 'object' && exceptionResponse !== null) {
+      } else if (
+        typeof exceptionResponse === 'object' &&
+        exceptionResponse !== null
+      ) {
         message = JSON.stringify(exceptionResponse);
       } else if (typeof exceptionResponse === 'string') {
         message = exceptionResponse;
